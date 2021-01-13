@@ -1,0 +1,8 @@
+# This file is machine-generated - editing it directly is not advised
+
+[[minCSV]]
+git-tree-sha1 = "abfed329babed51506be3943a160fdfeaaf2d422"
+repo-rev = "master"
+repo-url = "https://gitlab.com/stepanzh/minCSV.jl"
+uuid = "4b29f79c-2a41-11e9-33c1-3398aa0eba44"
+version = "0.1.0"
