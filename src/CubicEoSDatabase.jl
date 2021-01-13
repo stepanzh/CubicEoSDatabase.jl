@@ -1,3 +1,8 @@
+"""
+Provides interface for loading parameteres of components and mixtures from raw files.
+
+See `LOADASC5`, `gcp`, `gce`, `gbie`, `list_database`.
+"""
 module CubicEoSDatabase
     using minCSV: Reader, readrow
     using Base.Iterators: zip
