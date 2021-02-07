@@ -1,17 +1,19 @@
 """
-Provides interface for loading parameteres of components and mixtures from raw files.
+Provides interface for loading parameteres of components and mixtures from 
+*separated values* files.
 
-See `LOADASC5`, `gcp`, `gce`, `gbie`, `list_database`.
+See `ComponentDatabase`, `BinaryMixtureDatabase`, `getentry`, `getmatrix`.
 """
 module CubicEoSDatabase
-    using minCSV: Reader, readrow
-    using Base.Iterators: zip
+    using DelimitedFiles
 
-    export LOADASC5, gcp, gce, gbie, list_database
-
+    export
+        ComponentDatabase,
+        MixtureDatabase,
+        getentry,
+        getmatrix
+    
     include("types.jl")
-    include("config.jl")
-    include("dbreqcore.jl")
-    include("dbreq.jl")
-    include("listdatabase.jl")
+    include("errors.jl")
+    include("requests.jl")
 end

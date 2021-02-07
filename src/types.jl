@@ -1,81 +1,76 @@
-abstract type PropertyDatabase end
+"Wrapper for databases. `K` is number of primary keys."
+abstract type AbstractTabularDatabase{K} end
 
-name(db::PropertyDatabase) = error("Function not set for concrete type")
-source(db::PropertyDatabase) = error("Function not set for concrete type")
-reference(db::PropertyDatabase) = error("Function not set for concrete type")
+header(::AbstractTabularDatabase) = error("MethodUndefined")
+data(::AbstractTabularDatabase) = error("MethodUndefined")
+source(::AbstractTabularDatabase) = error("MethodUndefined")
+reference(::AbstractTabularDatabase) = "no reference"
 
-
-"""
-  ComponentDatabase(; name, source[, reference])
-
-Registry of a database for pure components.
-
-# Fields
-- `name::AbstractString`: name of database. If database is used in `ComponentDatabaseSet`, `name` is used as primary key.
-- `source::AbstractString`: path to source (raw) file. Usually, it is an absolute path to corresponding .csv file.
-- `reference::AbstractString`: optional, scientific reference to database.
-"""
-struct ComponentDatabase <: PropertyDatabase
-    name::AbstractString
-    source::AbstractString
-    reference::AbstractString
-
-    function ComponentDatabase(;
-            name,
-            source,
-            reference="no ref",
-        )
-        !isfile(source) && error("ComponentDatabase: Source file not found: $(source)")
-        return new(name, source, reference)
-    end
+Base.show(io::IO, x::AbstractTabularDatabase{K}) where {K} = begin
+    s = string(Base.typename(typeof(x))) * "(\"$(source(x))\")"
+    print(io, s)
 end
 
-name(cdb::ComponentDatabase) = cdb.name
-source(cdb::ComponentDatabase) = cdb.source
-reference(cdb::ComponentDatabase) = cdb.reference
-
-
-abstract type AbstractDatabaseSet end
-
-"Returns collection of `<:PropertyDatabase` in the `db_set`."
-databases(db_set::AbstractDatabaseSet) = error("Function not set for concrete type")
-
 """
-  search(db_set, target_dbname)
+  ComponentDatabase(source[; delim, reference])
 
-Searches `db_set` for registry `<:PropertyDatabase` with `name` `target_dbname`.
-Returns the registry.
-Throws `DomainError`, if database registry is not found.
+Wraps `source` file formatted as separated values.
+Aimed at tables with single primary key (e.g. component name).
 
 # Arguments
-- `db_set::AbstractDatabaseSet`.
-- `target_dbname::AbstractString`.
+
+- `source::AbstractString`: path to source file
+- `delim::AbstractChar=','`: column delimiter used in `source`
+- `reference::AbstractString`: optional biblio-reference describing `source`
 """
-function search(db_set::AbstractDatabaseSet, target_dbname::AbstractString)
-    for db in databases(db_set)
-        target_dbname == name(db) &&  return db
+struct ComponentDatabase{S<:AbstractString,V<:Tuple{Vararg{S}},M<:Matrix} <: AbstractTabularDatabase{1}
+    header::V     # tuple of headers in `source` 
+    data::M       # Matrix with data from `source`
+    source::S     # abspath to source file
+    reference::S  # optional biblio-reference to `source`
+
+    function ComponentDatabase(source; reference="no reference", delim=',')
+        source = abspath(source)
+        data, header = readdlm(source, delim, header=true)
+        header = tuple(map(String, header)...)
+        length(header) < 2 && throw(ArgumentError("Souce file contains too few columns: $(header)"))
+        return new{eltype(header),typeof(header),typeof(data)}(header, data, source, reference)
     end
-    throw(DomainError(target_dbname, "not found in set `$(db_set)`"))
 end
 
-"""
-  ComponentDatabaseSet(databases)
+header(x::ComponentDatabase) = x.header
+data(x::ComponentDatabase) = x.data
+source(x::ComponentDatabase) = x.source
+reference(x::ComponentDatabase) = x.reference
 
-Registry of a set of databases.
+"""
+  MixtureDatabase(source[; delim, reference])
+
+Wraps `source` file formatted as separated values.
+Aimed at tables with two primary keys (e.g. two names of components for binary interaction coefficients).
 
 # Arguments
-- `databases::Vector{<:PropertyDatabase}`.
-"""
-struct ComponentDatabaseSet <: AbstractDatabaseSet
-    databases::Vector{PropertyDatabase}
 
-    function ComponentDatabaseSet(databases::Vector{<:PropertyDatabase})
-        names = map(name, databases)
-        if length(databases) != length(unique(names))
-            error("ComponentDatabaseSet: names of databases are not unique")
-        end
-        return new(databases)
+- `source::AbstractString`: path to source file
+- `delim::AbstractChar=','`: column delimiter used in `source`
+- `reference::AbstractString`: optional biblio-reference describing `source`
+"""
+struct MixtureDatabase{S<:AbstractString,V<:Tuple{Vararg{S}},M<:Matrix} <: AbstractTabularDatabase{2}
+    header::V
+    data::M
+    source::S
+    reference::S
+
+    function MixtureDatabase(source; reference="no reference", delim=',')
+        source = abspath(source)
+        data, header = readdlm(source, delim, header=true)
+        header = tuple(map(String, header)...)
+        length(header) < 3 && throw(ArgumentError("Souce file contains too few columns: $(header)"))
+        return new{eltype(header),typeof(header),typeof(data)}(header, data, source, reference)
     end
 end
 
-databases(cds::ComponentDatabaseSet) = cds.databases
+header(x::MixtureDatabase) = x.header
+data(x::MixtureDatabase) = x.data
+source(x::MixtureDatabase) = x.source
+reference(x::MixtureDatabase) = x.reference
