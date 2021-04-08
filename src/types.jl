@@ -23,7 +23,7 @@ Aimed at tables with single primary key (e.g. component name).
 - `delim::AbstractChar=','`: column delimiter used in `source`
 - `reference::AbstractString`: optional biblio-reference describing `source`
 """
-struct ComponentDatabase{S<:AbstractString,V<:Tuple{Vararg{S}},M<:Matrix} <: AbstractTabularDatabase{1}
+struct ComponentDatabase{S<:AbstractString,V<:Tuple{Vararg{Symbol}},M<:Matrix} <: AbstractTabularDatabase{1}
     header::V     # tuple of headers in `source` 
     data::M       # Matrix with data from `source`
     source::S     # abspath to source file
@@ -32,9 +32,9 @@ struct ComponentDatabase{S<:AbstractString,V<:Tuple{Vararg{S}},M<:Matrix} <: Abs
     function ComponentDatabase(source; reference="no reference", delim=',')
         source = abspath(source)
         data, header = readdlm(source, delim, header=true)
-        header = tuple(map(String, header)...)
+        header = tuple(map(Symbol, header)...)
         length(header) < 2 && throw(ArgumentError("Souce file contains too few columns: $(header)"))
-        return new{eltype(header),typeof(header),typeof(data)}(header, data, source, reference)
+        return new{typeof(reference),typeof(header),typeof(data)}(header, data, source, reference)
     end
 end
 
@@ -55,7 +55,7 @@ Aimed at tables with two primary keys (e.g. two names of components for binary i
 - `delim::AbstractChar=','`: column delimiter used in `source`
 - `reference::AbstractString`: optional biblio-reference describing `source`
 """
-struct MixtureDatabase{S<:AbstractString,V<:Tuple{Vararg{S}},M<:Matrix} <: AbstractTabularDatabase{2}
+struct MixtureDatabase{S<:AbstractString,V<:Tuple{Vararg{Symbol}},M<:Matrix} <: AbstractTabularDatabase{2}
     header::V
     data::M
     source::S
@@ -64,9 +64,9 @@ struct MixtureDatabase{S<:AbstractString,V<:Tuple{Vararg{S}},M<:Matrix} <: Abstr
     function MixtureDatabase(source; reference="no reference", delim=',')
         source = abspath(source)
         data, header = readdlm(source, delim, header=true)
-        header = tuple(map(String, header)...)
+        header = tuple(map(Symbol, header)...)
         length(header) < 3 && throw(ArgumentError("Souce file contains too few columns: $(header)"))
-        return new{eltype(header),typeof(header),typeof(data)}(header, data, source, reference)
+        return new{typeof(reference),typeof(header),typeof(data)}(header, data, source, reference)
     end
 end
 
