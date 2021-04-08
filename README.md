@@ -14,6 +14,8 @@ After installing you can test package by `(v1.2) pkg> test CubicEoSDatabase`.
 
 # Minimal Working Examples
 
+**TL;DR** See `test/example.jl` and `test/example_database/`.
+
 ## getentry(db, key): get info of a component
 
 Suppose a file named `brusylovksy.csv` which collects eos-parameters
