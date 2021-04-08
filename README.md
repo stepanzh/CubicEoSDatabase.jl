@@ -38,10 +38,10 @@ using CubicEoSDatabase
 comp_eos = ComponentDatabase("brusylovsky.csv")
 d = getentry(comp_eos, "methane")
 # `d` is Dict{String,Any}(
-#     "critical_omega" => 0.7563,
-#     "name" => "methane",
-#     "psi" => 0.37447,
-#     "critical_compressibility" => 0.33294
+#     :critical_omega => 0.7563,
+#     :name => "methane",
+#     :psi => 0.37447,
+#     :critical_compressibility => 0.33294
 # )
 ```
 
@@ -63,11 +63,11 @@ using CubicEoSDatabase
 mix_eos = MixtureDatabase("mix_brusylovsky.csv")
 d = getentry(mix_eos, "methane", "ethane")
 # `d` is Dict{String,Any}(
-#     "constant" => -0.015,
-#     "linear" => 0.000123,
-#     "comp2" => "ethane",
-#     "comp1" => "methane",
-#     "quadratic" => -0.41
+#     :constant => -0.015,
+#     :linear => 0.000123,
+#     :comp2 => "ethane",
+#     :comp1 => "methane",
+#     :quadratic => -0.41
 # )
 ```
 
@@ -81,9 +81,9 @@ using CubicEoSDatabase
 mix_eos = MixtureDatabase("mix_brusylovsky.csv")
 d = getmatrix(mix_eos, ("methane", "ethane"))
 # `d` is Dict(
-#     "constant" => [0.0 -0.015; -0.015 0.0],
-#     "linear" => [0.0 0.000123; 0.000123 0.0],
-#     "quadratic" => [0.0 -0.41; -0.41 0.0]
+#     :constant => [0.0 -0.015; -0.015 0.0],
+#     :linear => [0.0 0.000123; 0.000123 0.0],
+#     :quadratic => [0.0 -0.41; -0.41 0.0]
 # )
 ```
 
