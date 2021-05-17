@@ -3,6 +3,8 @@ Provides interface for loading parameteres of components and mixtures from
 *separated values* files.
 
 See `ComponentDatabase`, `BinaryMixtureDatabase`, `getentry`, `getmatrix`.
+
+Out-of-box database stored in `CubicEoSDatabase.Data` module.
 """
 module CubicEoSDatabase
     using DelimitedFiles
@@ -11,9 +13,12 @@ module CubicEoSDatabase
         ComponentDatabase,
         MixtureDatabase,
         getentry,
-        getmatrix
+        getmatrix,
+        Data
     
     include("types.jl")
     include("errors.jl")
     include("requests.jl")
+
+    include("Data.jl")
 end

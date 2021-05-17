@@ -1,7 +1,7 @@
 @testset "Requests" begin
 
 @testset "getentry for component" begin
-    martinez = ComponentDatabase("example_database/phys/comp/martinez.csv")
+    martinez = Data.martinez()
 
     @test getentry(martinez, "methane") isa Dict
     @test_throws CubicEoSDatabase.NotFoundError getentry(martinez, "philosophic_stone")
@@ -15,7 +15,7 @@
         :number_carbons => 1,
     )
 
-    eos = ComponentDatabase("example_database/eos/comp/brusylovsky.csv")
+    eos = Data.brusilovskii_comp()
     @test getentry(eos, "methane") isa Dict
     @test_throws CubicEoSDatabase.NotFoundError getentry(eos, "philosophic_stone")
     @test getentry(eos, "methane") == Dict(
@@ -32,7 +32,7 @@
     )
 end
 @testset "getentry for binary" begin
-    binary = MixtureDatabase("example_database/eos/mix/brusylovsky.csv")
+    binary = Data.brusilovskii_mix()
     @test getentry(binary, "methane", "n-pentane") isa Dict
     @test_throws CubicEoSDatabase.NotFoundError getentry(binary, "methane", "philosophic_stone")
 
@@ -51,7 +51,7 @@ end
 end
 
 @testset "getmatrix" begin
-    db = MixtureDatabase("example_database/eos/mix/brusylovsky.csv")
+    db = Data.brusilovskii_mix()
     @test getmatrix(db, ("methane", "propane", "ethane")) isa Dict{Symbol,Matrix{Float64}}
     @test_throws CubicEoSDatabase.NotFoundError getmatrix(db, ("methane", "philosophic_stone"))
     
