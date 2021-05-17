@@ -12,13 +12,18 @@ Currently, most covered equation of state is Brusylovsky's (general) equation of
 
 After installing you can test package by `(v1.2) pkg> test CubicEoSDatabase`.
 
+# Sample (out-of-box) database
+Repository provides databases of gas properties and eos parameters.
+
+They can be accessed from `CubicEoSDatabase.Data` nested module. See `help?> CubicEoSDatabase.Data`.
+
 # Minimal Working Examples
 
 **TL;DR** See `test/example.jl` and `test/example_database/`.
 
 ## getentry(db, key): get info of a component
 
-Suppose a file named `brusylovksy.csv` which collects eos-parameters
+Suppose a file named `brusilovksii.csv` which collects eos-parameters
 
 ```
 name,critical_compressibility,critical_omega,psi
@@ -37,7 +42,7 @@ n-decane,C5+,C5+,C5+
 ```julia
 using CubicEoSDatabase
 
-comp_eos = ComponentDatabase("brusylovsky.csv")
+comp_eos = ComponentDatabase("brusilovskii.csv")
 d = getentry(comp_eos, "methane")
 # `d` is Dict{String,Any}(
 #     :critical_omega => 0.7563,
@@ -49,7 +54,7 @@ d = getentry(comp_eos, "methane")
 
 ## getentry(db, key1, key2): get info about pair of components
 
-Suppose a file `mix_brusylovsky.csv` collecting pair-interaction parameters of components
+Suppose a file `mix_brusilovskii.csv` collecting pair-interaction parameters of components
 
 ```
 comp1,comp2,constant,linear,quadratic
@@ -62,7 +67,7 @@ methane,n-butane,0.031,0.000502,0
 ```julia
 using CubicEoSDatabase
 
-mix_eos = MixtureDatabase("mix_brusylovsky.csv")
+mix_eos = MixtureDatabase("mix_brusilovskii.csv")
 d = getentry(mix_eos, "methane", "ethane")
 # `d` is Dict{String,Any}(
 #     :constant => -0.015,
@@ -75,12 +80,12 @@ d = getentry(mix_eos, "methane", "ethane")
 
 ## getmatrix(db, keys[, diag=0.0]): get matrix of pairwise parameters
 
-Recall `mix_brusylovsky.csv` from MVE for `getentry(db, key1, key2)`. Function `getmatrix(db, keys)` constructs pair-interaction matrices for `keys`. It supposes that a parameter-column named `A` of source file contains `A_ij` coefficients, where `i` and `j` are keys (indices) stored in first two columns of corresponding row.
+Recall `mix_brusilovskii.csv` from MVE for `getentry(db, key1, key2)`. Function `getmatrix(db, keys)` constructs pair-interaction matrices for `keys`. It supposes that a parameter-column named `A` of source file contains `A_ij` coefficients, where `i` and `j` are keys (indices) stored in first two columns of corresponding row.
 
 ```julia
 using CubicEoSDatabase
 
-mix_eos = MixtureDatabase("mix_brusylovsky.csv")
+mix_eos = MixtureDatabase("mix_brusilovskii.csv")
 d = getmatrix(mix_eos, ("methane", "ethane"))
 # `d` is Dict(
 #     :constant => [0.0 -0.015; -0.015 0.0],
