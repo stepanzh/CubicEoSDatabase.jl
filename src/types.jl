@@ -6,6 +6,20 @@ data(::AbstractTabularDatabase) = error("MethodUndefined")
 source(::AbstractTabularDatabase) = error("MethodUndefined")
 reference(::AbstractTabularDatabase) = "no reference"
 
+"""
+    keys(atd::AbstractTabularDatabase{K})
+
+Return an iterator over all keys in `atd`.
+For `AbstractTabularDatabase{1}` key is string.
+For `AbstractTabularDatabase{K≥2}` key is `Tuple` of length `K` with strings.
+"""
+Base.keys(x::AbstractTabularDatabase{K}) where {K} = begin
+    return (tuple(key...) for key in eachrow(@view data(x)[:, 1:K]))  # key is first K columns of a row
+end
+Base.keys(x::AbstractTabularDatabase{1}) = begin
+    return (key for key in @view data(x)[:, 1])
+end
+
 Base.show(io::IO, x::AbstractTabularDatabase{K}) where {K} = begin
     s = string(Base.typename(typeof(x))) * "(\"$(source(x))\")"
     print(io, s)
