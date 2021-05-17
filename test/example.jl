@@ -1,9 +1,9 @@
 using CubicEoSDatabase
 
 
-comp_phys = ComponentDatabase("example_database/phys/comp/martinez.csv") 
-comp_eos = ComponentDatabase("example_database/eos/comp/brusylovsky.csv")
-mix_eos = MixtureDatabase("example_database/eos/mix/brusylovsky.csv")
+comp_phys = CubicEoSDatabase.Data.martinez()
+comp_eos = CubicEoSDatabase.Data.brusilovskii_comp()
+mix_eos = CubicEoSDatabase.Data.brusilovskii_mix()
 
 println(getentry(comp_phys, "methane"))
 println(getentry(comp_eos, "methane"))
