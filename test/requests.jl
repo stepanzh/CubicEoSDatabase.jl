@@ -15,7 +15,7 @@
         :number_carbons => 1,
     )
 
-    eos = Data.brusilovskii_comp()
+    eos = Data.brusilovsky_comp()
     @test getentry(eos, "methane") isa Dict
     @test_throws CubicEoSDatabase.NotFoundError getentry(eos, "philosophic_stone")
     @test getentry(eos, "methane") == Dict(
@@ -32,7 +32,7 @@
     )
 end
 @testset "getentry for binary" begin
-    binary = Data.brusilovskii_mix()
+    binary = Data.brusilovsky_mix()
     @test getentry(binary, "methane", "n-pentane") isa Dict
     @test_throws CubicEoSDatabase.NotFoundError getentry(binary, "methane", "philosophic_stone")
 
@@ -51,7 +51,7 @@ end
 end
 
 @testset "getmatrix" begin
-    db = Data.brusilovskii_mix()
+    db = Data.brusilovsky_mix()
     @test getmatrix(db, ("methane", "propane", "ethane")) isa Dict{Symbol,Matrix{Float64}}
     @test_throws CubicEoSDatabase.NotFoundError getmatrix(db, ("methane", "philosophic_stone"))
     

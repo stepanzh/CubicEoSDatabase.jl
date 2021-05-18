@@ -4,14 +4,14 @@ Repository database of thermodynamical properties.
 Exported methods are
 
 - `martinez()::ComponentDatabase`: gas properties of substances;
-- `brusilovskii_comp()::ComponentDatabase`: parameters of A I Brusilovskii equation of state for pure components;
-- `brusilovskii_mix()::MixtureDatabase`: binary parameters of A I Brusilovskii equation of state for mixtures.
+- `brusilovsky_comp()::ComponentDatabase`: parameters of A I Brusilovskii equation of state for pure components;
+- `brusilovsky_mix()::MixtureDatabase`: binary parameters of A I Brusilovskii equation of state for mixtures.
 """
 module Data
 
 using ..CubicEoSDatabase
 
-export martinez, brusilovskii_comp, brusilovskii_mix
+export martinez, brusilovsky_comp, brusilovsky_mix
 
 "Root path of database source files."
 root = joinpath(abspath(@__DIR__), "../data")
@@ -23,17 +23,17 @@ martinez() = ComponentDatabase(
     delim=','
 )
 
-brusilovskii_book = "A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)"
+brusilovsky_book = "A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)"
 "A I Brusilovskii equation of state parameters for pure components."
-brusilovskii_comp() = ComponentDatabase(
-    joinpath(root, "eos/comp/brusilovskii.csv"),
-    reference=brusilovskii_book,
+brusilovsky_comp() = ComponentDatabase(
+    joinpath(root, "eos/comp/brusilovsky.csv"),
+    reference=brusilovsky_book,
     delim=','
 )
 "A I Brusilovskii equation of state binary parameters for mixtures."
-brusilovskii_mix() = MixtureDatabase(
-    joinpath(root, "eos/mix/brusilovskii.csv"),
-    reference=brusilovskii_book,
+brusilovsky_mix() = MixtureDatabase(
+    joinpath(root, "eos/mix/brusilovsky.csv"),
+    reference=brusilovsky_book,
     delim=','
 )
 

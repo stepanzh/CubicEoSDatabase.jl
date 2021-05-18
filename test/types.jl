@@ -6,7 +6,7 @@
 end
 
 @testset "MixtureDatabase" begin
-    @test Data.brusilovskii_mix() isa MixtureDatabase
+    @test Data.brusilovsky_mix() isa MixtureDatabase
     @test_throws ArgumentError MixtureDatabase("foo_db/galaxy.csv")
 end
 
