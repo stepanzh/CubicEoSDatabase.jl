@@ -1,7 +1,7 @@
 name = "CubicEoSDatabase"
 uuid = "8742253c-1987-415f-b31d-1ec9670d9ed7"
 authors = ["Stepan Zakharov <stepanzh@gmail.com>"]
-version = "0.2.0"
+version = "0.2.1"
 
 [deps]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
