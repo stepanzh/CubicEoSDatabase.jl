@@ -1,7 +1,11 @@
 image: julia:1.4                # image comes from Docker hub
 
-default:
+stages:
+  - test
+
+test-code-job:
+  stage: test
+  before_script:
+    - echo Testing code by default Pkg.test() method.
   script:
     - julia --project=@. -e "import Pkg; Pkg.test(; coverage = false)"
-    
-
