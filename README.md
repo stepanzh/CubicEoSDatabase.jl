@@ -17,6 +17,8 @@ Repository provides databases of gas properties and eos parameters.
 
 They can be accessed from `CubicEoSDatabase.Data` nested module. See `help?> CubicEoSDatabase.Data`.
 
+Available components can be viewed by `keys(ComponentDatabase), keys(MixtureDatabase)`.
+
 # Minimal Working Examples
 
 **TL;DR** See `test/example.jl` and `test/example_database/`.
