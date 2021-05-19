@@ -20,15 +20,15 @@
     @test_throws CubicEoSDatabase.NotFoundError getentry(eos, "philosophic_stone")
     @test getentry(eos, "methane") == Dict(
         :name => "methane",
-        :critical_compressibility => 0.33294,
-        :critical_omega => 0.7563,
-        :psi => 0.37447
+        :eos_critical_compressibility => 0.33294,
+        :eos_critical_omega => 0.7563,
+        :eos_psi => 0.37447
     )
     @test getentry(eos, "n-octane") == Dict(
         :name => "n-octane",
-        :critical_compressibility => "C5+",
-        :critical_omega => "C5+",
-        :psi => "C5+"
+        :eos_critical_compressibility => "C5+",
+        :eos_critical_omega => "C5+",
+        :eos_psi => "C5+"
     )
 end
 @testset "getentry for binary" begin
