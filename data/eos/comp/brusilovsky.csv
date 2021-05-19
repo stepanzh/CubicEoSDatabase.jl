@@ -1,4 +1,4 @@
-name,critical_compressibility,critical_omega,psi
+name,eos_critical_compressibility,eos_critical_omega,eos_psi
 nitrogen,0.34626,0.75001,0.37182
 methane,0.33294,0.7563,0.37447
 ethane,0.31274,0.77698,0.49550
