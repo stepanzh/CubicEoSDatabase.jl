@@ -52,7 +52,7 @@ const CachedBrusilovskyComp = CachedDatabase(ComponentDatabase,
 "A I Brusilovskii equation of state parameters for pure components."
 brusilovsky_comp() = value(CachedBrusilovskyComp)
 
-CachedBrusilovskyMixture = CachedDatabase(MixtureDatabase,
+const CachedBrusilovskyMixture = CachedDatabase(MixtureDatabase,
     (joinpath(root, "eos/mix/brusilovsky.csv"),),
     (reference=brusilovsky_book, delim=',')
 )
