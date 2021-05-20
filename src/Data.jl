@@ -24,7 +24,7 @@ mutable struct CachedDatabase{T,A,KW}
     end
 end
 
-value(x::CachedDatabase{T,A,KW}) where {T,A,KW} = begin
+function value(x::CachedDatabase{T,A,KW}) where {T,A,KW}
     if !x.calculated
         x.value = T(x.args...; x.kwargs...)
         x.calculated = true
@@ -32,22 +32,23 @@ value(x::CachedDatabase{T,A,KW}) where {T,A,KW} = begin
     return x.value::T
 end
 
-
 "Root path of database source files."
 const root = joinpath(abspath(@__DIR__), "../data")
 
-CachedMartinez = CachedDatabase(ComponentDatabase,
+const CachedMartinez = CachedDatabase(ComponentDatabase,
     (joinpath(root, "phys/comp/martinez.csv"),),
     (reference="Website (loaded in 2017): http://imartinez.etsiae.upm.es/~isidoro/dat1/eGAS.pdf", delim=',')
 )
+
 "I Martinez gas properties."
 martinez() = value(CachedMartinez)
 
-brusilovsky_book = "A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)"
-CachedBrusilovskyComp = CachedDatabase(ComponentDatabase,
+const brusilovsky_book = "A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)"
+const CachedBrusilovskyComp = CachedDatabase(ComponentDatabase,
     (joinpath(root, "eos/comp/brusilovsky.csv"),),
     (reference=brusilovsky_book, delim=',')
 )
+
 "A I Brusilovskii equation of state parameters for pure components."
 brusilovsky_comp() = value(CachedBrusilovskyComp)
 
@@ -55,6 +56,7 @@ CachedBrusilovskyMixture = CachedDatabase(MixtureDatabase,
     (joinpath(root, "eos/mix/brusilovsky.csv"),),
     (reference=brusilovsky_book, delim=',')
 )
+
 "A I Brusilovskii equation of state binary parameters for mixtures."
 brusilovsky_mix() = value(CachedBrusilovskyMixture)
 
