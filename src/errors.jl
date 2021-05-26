@@ -1,5 +1,5 @@
 """
-  NotFoundError(what, where)
+    CubicEoSDatabase.NotFoundError(what, where) <: Exception
 
 Describes `where` `what` was not found. The `where` should be database object.
 """
