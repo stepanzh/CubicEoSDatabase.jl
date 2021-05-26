@@ -2,7 +2,7 @@
 
 ## Preliminary
 
-[Delimited-separated values](https://en.wikipedia.org/wiki/Delimiter-separated_values) (DSV file) — a text file representing tabular data by using a column delimiter char. Examples: `.tsv`, `.csv`.
+[Delimited-separated values](https://en.wikipedia.org/wiki/Delimiter-separated_values) (DSV file) — a text file representing tabular data by using a column delimiter char (e.g. `.tsv`, `.csv`).
 
 !!! warning "DSV file size"
     As the package is built upon DelimitedFiles, a source file is loaded to RAM.
