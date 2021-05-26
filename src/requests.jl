@@ -3,7 +3,9 @@
 
 Searches database `from` for row (entry) with first item equal to `key`.
 
-Returns `Dict` which keys are `header(from)` and values are corresponding data.
+Returns `Dict` which keys are [`header(from)`](@ref) and values are corresponding data.
+
+Throws [`CubicEoSDatabase.NotFoundError`](@ref) if `key` was not found.
 """
 function getentry(from::AbstractTabularDatabase{1}, key::AbstractString)
     for row in eachrow(data(from))
@@ -20,10 +22,11 @@ end
     getentry(from::AbstractTabularDatabase{2}, key₁, key₂[; keeporder])
 
 Searches database `from` for row (entry) which first two items are equal to `key₁` and `key₂`.
-
 If `keeporder` is `true` then the keys are assumed to be ordered pair (default is `false`).
 
-Returns `Dict` which keys are `header(from)`, and values are corresponding data.
+Returns `Dict` which keys are [`header(from)`](@ref), and values are corresponding data.
+
+Throws [`CubicEoSDatabase.NotFoundError`](@ref) if key pair was not found.
 """
 function getentry(
         from::AbstractTabularDatabase{2},
@@ -47,12 +50,12 @@ end
 
 Extracts matrices from `from` by **unordered** key pairs generated from `keys`.
 
-Each matrix corresponds to a data column in `from`.
-The matrices are symmetric with diagonal elements `diag=0.0`.
+Each matrix corresponds to a data column in `from`. Indices of a matrix are same as in `keys`.
+The returned matrices are symmetric with diagonal elements `diag=0.0`.
 
-Indices of a matrix are same as in `keys`.
+Returns `Dict` which keys are [`header(from)`](@ref) and values are matrices.
 
-Returns `Dict` which keys are `header(from)` and values are matrices.
+Throws [`CubicEoSDatabase.NotFoundError`](@ref) if a key pair was not found.
 
 # Arguments
 

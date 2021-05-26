@@ -45,3 +45,9 @@ MixtureDatabase
 getentry
 getmatrix
 ```
+
+### Error handling
+
+```@docs
+CubicEoSDatabase.NotFoundError
+```
