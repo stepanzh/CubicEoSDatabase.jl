@@ -33,13 +33,13 @@ Base.keys(::CubicEoSDatabase.AbstractTabularDatabase)
 
 ```@docs
 ComponentDatabase
-```
-
-```@docs
 MixtureDatabase
 ```
 
 ## Database requests
+
+!!! warning "Linear request time"
+    Current implementation of requests takes ``O(N)`` time, where ``N`` is number of rows in source file.
 
 ```@docs
 getentry
