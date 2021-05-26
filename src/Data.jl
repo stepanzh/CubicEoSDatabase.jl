@@ -40,7 +40,11 @@ const CachedMartinez = CachedDatabase(ComponentDatabase,
     (reference="Website (loaded in 2017): http://imartinez.etsiae.upm.es/~isidoro/dat1/eGAS.pdf", delim=',')
 )
 
-"I Martinez gas properties."
+"""
+    Data.martinez() -> ComponentDatabase
+
+I Martinez gas properties.
+"""
 martinez() = value(CachedMartinez)
 
 const brusilovsky_book = "A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)"
@@ -49,7 +53,11 @@ const CachedBrusilovskyComp = CachedDatabase(ComponentDatabase,
     (reference=brusilovsky_book, delim=',')
 )
 
-"A I Brusilovskii equation of state parameters for pure components."
+"""
+    Data.brusilovsky_comp() -> ComponentDatabase
+
+A I Brusilovsky equation of state. Parameters for pure components.
+"""
 brusilovsky_comp() = value(CachedBrusilovskyComp)
 
 const CachedBrusilovskyMixture = CachedDatabase(MixtureDatabase,
@@ -57,7 +65,11 @@ const CachedBrusilovskyMixture = CachedDatabase(MixtureDatabase,
     (reference=brusilovsky_book, delim=',')
 )
 
-"A I Brusilovskii equation of state binary parameters for mixtures."
+"""
+    Data.brusilovsky_mix() -> MixtureDatabase
+
+A I Brusilovsky equation of state. Binary parameters for mixtures.
+"""
 brusilovsky_mix() = value(CachedBrusilovskyMixture)
 
 end # module
