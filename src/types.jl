@@ -55,9 +55,10 @@ Base.show(io::IO, x::AbstractTabularDatabase{K}) where {K} = begin
 end
 
 """
-  ComponentDatabase(source[; delim, reference])
+    ComponentDatabase(source[; delim, reference]) <: AbstractTabularDatabase{1}
 
 Wraps `source` file formatted as separated values.
+
 Aimed at tables with single primary key (e.g. component name).
 
 # Arguments
@@ -87,10 +88,11 @@ source(x::ComponentDatabase) = x.source
 reference(x::ComponentDatabase) = x.reference
 
 """
-  MixtureDatabase(source[; delim, reference])
+    MixtureDatabase(source[; delim, reference]) <: AbstractTabularDatabase{2}
 
 Wraps `source` file formatted as separated values.
-Aimed at tables with two primary keys (e.g. two names of components for binary interaction coefficients).
+
+Aimed at tables with two primary keys (e.g. two names of components).
 
 # Arguments
 
