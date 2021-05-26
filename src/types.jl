@@ -1,16 +1,45 @@
-"Wrapper for databases. `K` is number of primary keys."
+"""
+    CubicEoSDatabase.AbstractTabularDatabase{K}
+
+Supertype for wrappers of databases. `K` is number of primary keys.
+"""
 abstract type AbstractTabularDatabase{K} end
 
+"""
+    header(x::AbstractTabularDatabase)
+
+Returns collection of source file headers of `x`.
+"""
 header(::AbstractTabularDatabase) = error("MethodUndefined")
+
+"""
+    data(x::AbstractTabularDatabase)
+
+Returns matrix with parsed data stored in `x`.
+"""
 data(::AbstractTabularDatabase) = error("MethodUndefined")
+
+"""
+    source(x::AbstractTabularDatabase)
+
+Returns path to source file which `x` maps to.
+"""
 source(::AbstractTabularDatabase) = error("MethodUndefined")
+
+"""
+    reference(x::AbstractTabularDatabase)
+
+Returns biblio reference of `x`.
+"""
 reference(::AbstractTabularDatabase) = "no reference"
 
 """
     keys(atd::AbstractTabularDatabase{K})
 
 Return an iterator over all keys in `atd`.
+
 For `AbstractTabularDatabase{1}` key is string.
+
 For `AbstractTabularDatabase{K≥2}` key is `Tuple` of length `K` with strings.
 """
 Base.keys(x::AbstractTabularDatabase{K}) where {K} = begin
@@ -38,7 +67,7 @@ Aimed at tables with single primary key (e.g. component name).
 - `reference::AbstractString`: optional biblio-reference describing `source`
 """
 struct ComponentDatabase{S<:AbstractString,V<:Tuple{Vararg{Symbol}},M<:Matrix} <: AbstractTabularDatabase{1}
-    header::V     # tuple of headers in `source` 
+    header::V     # tuple of headers in `source`
     data::M       # Matrix with data from `source`
     source::S     # abspath to source file
     reference::S  # optional biblio-reference to `source`

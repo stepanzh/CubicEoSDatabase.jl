@@ -7,6 +7,6 @@ makedocs(;
     pages=[
         "index.md",
         # "outofboxdb.md",
-        # "apireference.md",
+        "apireference.md",
     ]
 )

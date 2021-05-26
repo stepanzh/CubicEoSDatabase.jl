@@ -89,42 +89,7 @@ d = getmatrix(mix_eos, ("methane", "propane", "n-butane"); diag=0.0)
 d
 ```
 
-# Reference
 
-## Preliminary
-
-We suppose that a row of source datafile uniquely determined by values at first `K` columns (e.g. names of components).
-We called these columns *primary keys* or just *keys*.
-
-## Types
-
-```@docs
-CubicEoSDatabase.AbstractTabularDatabase{K}
-```
-
-```@docs
-ComponentDatabase
-```
-
-```@docs
-MixtureDatabase
-```
-
-### Accessors
-
-```@docs
-data
-header
-reference
-source
-```
-
-## Database requests
-
-```@docs
-getentry
-getmatrix
-```
 
 ## Out-of-box databases
 
