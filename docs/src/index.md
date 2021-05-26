@@ -4,7 +4,11 @@
 
 The package provides wrappers (see [Types and accessors](@ref)) for [separated-values](https://en.wikipedia.org/wiki/Delimiter-separated_values) files and requests methods (see [Database requests](@ref)).
 
-The package is lightweight and based upon built-in [DelimitedFiles](https://docs.julialang.org/en/v1/stdlib/DelimitedFiles/).
+## Features
+
+- Works with DSV text files
+- Lightweight, no third-party dependencies. Based on built-in [DelimitedFiles](https://docs.julialang.org/en/v1/stdlib/DelimitedFiles/)
+- Includes [Out-of-box database](@ref)
 
 # Quick start
 
@@ -87,14 +91,6 @@ using CubicEoSDatabase
 mix_eos = MixtureDatabase("brusilovsky_mix.csv")
 d = getmatrix(mix_eos, ("methane", "propane", "n-butane"); diag=0.0)
 d
-```
-
-
-
-## Out-of-box databases
-
-```@docs
-CubicEoSDatabase.Data
 ```
 
 ## Index

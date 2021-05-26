@@ -6,7 +6,7 @@ makedocs(;
     modules=[CubicEoSDatabase],
     pages=[
         "index.md",
-        # "outofboxdb.md",
+        "outofboxdb.md",
         "apireference.md",
     ]
 )
