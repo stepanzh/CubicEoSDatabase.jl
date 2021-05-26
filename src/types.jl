@@ -57,7 +57,7 @@ end
 """
     ComponentDatabase(source[; delim, reference]) <: AbstractTabularDatabase{1}
 
-Wraps `source` file formatted as separated values.
+Wraps `source` DSV-file formatted as separated values.
 
 Aimed at tables with single primary key (e.g. component name).
 
