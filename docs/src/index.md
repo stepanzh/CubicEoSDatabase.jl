@@ -1,4 +1,4 @@
-# CubicEoSDatabase.jl
+# Home
 
 *Loading parameters of equations of state from source files.*
 
@@ -39,38 +39,34 @@ nothing
 
 Suppose a file `brusilovsky.csv` which collects eos-parameters of *components*
 
-```@example rawsource
-print(read(open("brusilovsky.csv"), String))
+```@repl rawsource
+read(open("brusilovsky.csv"), String) |> print
 ```
 
-To obtain parameters of a component (e.g. methane) you do the following
+To obtain parameters of a component (e.g. methane) wrap the source file with [`ComponentDatabase`](@ref) and use [`getentry`](@ref)
 
-```@example rawsource
+```@repl rawsource
 using CubicEoSDatabase
-
-comp_eos = ComponentDatabase("brusilovsky.csv")  # wrapper of source file
-d = getentry(comp_eos, "methane")                # actual request
-d
+comp_eos = ComponentDatabase("brusilovsky.csv");
+getentry(comp_eos, "methane")
 ```
 
 ## Obtaining parameters of pair of components
 
 Some parameters of equation of state are determined by pair of components (e.g. binary interaction).
 
-Suppose a file `brusilovsky_mix.csv` which collects binary interaction parameters.
+Suppose a file `brusilovsky_mix.csv` collecting binary interaction parameters.
 
-```@example rawsource
-print(read(open("brusilovsky_mix.csv"), String))
+```@repl rawsource
+read(open("brusilovsky_mix.csv"), String) |> print
 ```
 
-To obtain parameters of methane + ethane do the following
+To obtain parameters of methane + ethane wrap the source file with [`MixtureDatabase`](@ref) and use [`getentry`](@ref)
 
-```@example rawsource
+```@repl rawsource
 using CubicEoSDatabase
-
-mix_eos = MixtureDatabase("brusilovsky_mix.csv")
-d = getentry(mix_eos, "methane", "ethane")
-d
+mix_eos = MixtureDatabase("brusilovsky_mix.csv");
+getentry(mix_eos, "methane", "ethane")
 ```
 
 ### Obtaining matrices of binary parameters
@@ -85,12 +81,10 @@ where ``i, j`` are names of components (columns 'comp1' and 'comp2').
 
 To obtain these matrices for mixture of methane, propane and n-butane, do the following
 
-```@example
+```@repl
 using CubicEoSDatabase
-
-mix_eos = MixtureDatabase("brusilovsky_mix.csv")
-d = getmatrix(mix_eos, ("methane", "propane", "n-butane"); diag=0.0)
-d
+mix_eos = MixtureDatabase("brusilovsky_mix.csv");
+getmatrix(mix_eos, ("methane", "propane", "n-butane"); diag=0.0)
 ```
 
 ## Index
