@@ -1,4 +1,4 @@
-# Home ha-ha I was deployed
+# Home
 
 *Loading parameters of equations of state from source files.*
 
