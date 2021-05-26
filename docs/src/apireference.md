@@ -1,5 +1,10 @@
 # API Reference
 
+```@contents
+Pages = ["apireference.md"]
+Depth = 4
+```
+
 ## Preliminary
 
 [Delimited-separated values](https://en.wikipedia.org/wiki/Delimiter-separated_values) (DSV file) — a text file representing tabular data by using a column delimiter char (e.g. `.tsv`, `.csv`).
@@ -15,6 +20,10 @@ We called these columns *primary keys* or just *keys*.
 
 ```@docs
 CubicEoSDatabase
+```
+
+```@index
+Modules = [CubicEoSDatabase]
 ```
 
 ### Types and accessors
@@ -65,9 +74,20 @@ CubicEoSDatabase.jl comes with out-of-box database. It lives in public [`Data`](
 !!! info "Databases are cached"
     Each database presented in [`Data`](@ref) is cached. So only first call will allocate memory.
 
+```@index
+Modules = [Data]
+```
+
 ```@docs
 Data
 Data.martinez()
 Data.brusilovsky_comp()
 Data.brusilovsky_mix()
+```
+
+### Internals
+
+```@docs
+CubicEoSDatabase.Data.root
+CubicEoSDatabase.Data.CachedDatabase
 ```
