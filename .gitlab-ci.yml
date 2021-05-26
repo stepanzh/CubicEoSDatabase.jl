@@ -1,7 +1,10 @@
+# mostly taken from https://gitlab.com/tkpapp/GitlabJuliaDemo.jl
+
 image: julia:1.2                # image comes from Docker hub
 
 stages:
   - test
+  - deploy
 
 test-code-job:
   stage: test
@@ -9,3 +12,19 @@ test-code-job:
     - echo Testing code by default Pkg.test method.
   script:
     - julia --project=@. -e "import Pkg; Pkg.test(; coverage = false)"
+
+pages:
+  stage: deploy
+  # before_script:
+  #   # workaround for https://github.com/JuliaDocs/Documenter.jl/issues/686
+  #   - apt-get -qq update; apt-get -y install git
+  #   - julia --project=@. -e "import Pkg; Pkg.build()"
+  script:
+    - julia --project=docs -e 'using Pkg; Pkg.instantiate(); Pkg.develop(PackageSpec(path=pwd()))'
+    - julia --project=docs --color=yes docs/make.jl
+    - mv docs/build public # move to the directory picked up by Gitlab pages
+  artifacts:
+    paths:
+      - public
+  only:
+  - master
