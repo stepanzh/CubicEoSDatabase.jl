@@ -1,6 +1,6 @@
 # mostly taken from https://gitlab.com/tkpapp/GitlabJuliaDemo.jl
 
-image: julia:1.2                # image comes from Docker hub
+image: julia:1.5
 
 stages:
   - test
