@@ -2,13 +2,13 @@
 
 *Loading parameters of equations of state from source files.*
 
-The package provides wrappers (see [Types and accessors](@ref)) for [separated-values](https://en.wikipedia.org/wiki/Delimiter-separated_values) files and requests methods (see [Database requests](@ref)).
+The package provides wrappers (see [Types and accessors](@ref)) for [separated-values](https://en.wikipedia.org/wiki/Delimiter-separated_values) files and request methods (see [Database requests](@ref)).
 
 ## Features
 
-- Works with DSV text files
-- Lightweight, no third-party dependencies. Based on built-in [DelimitedFiles](https://docs.julialang.org/en/v1/stdlib/DelimitedFiles/)
-- Includes [Out-of-box database](@ref)
+- Works with [delimiter-separated value](https://en.wikipedia.org/wiki/Delimiter-separated_values) text files.
+- Lightweight, no third-party dependencies. Based on built-in [DelimitedFiles](https://docs.julialang.org/en/v1/stdlib/DelimitedFiles/).
+- Includes [Out-of-box database](@ref).
 
 # Quick start
 
