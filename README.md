@@ -1,5 +1,9 @@
 # CubicEoSDatabase.jl
 
+[![pipeline status](https://gitlab.com/stepanzh/cubiceosdatabase.jl/badges/master/pipeline.svg)](https://gitlab.com/stepanzh/cubiceosdatabase.jl/-/commits/master)
+[![documetation here](https://img.shields.io/badge/docs-here-informational.svg)](https://stepanzh.gitlab.io/cubiceosdatabase.jl/)
+[![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
+
 Database of parameters for different cubic equations of state. The database is aimed at pure alkanes and its mixtures.
 
 Currently, most covered equation of state is Brusylovsky's (general) equation of state.
