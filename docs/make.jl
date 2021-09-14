@@ -14,6 +14,7 @@ makedocs(;
     repo = "https://gitlab.com/stepanzh/cubiceosdatabase.jl/blob/{commit}{path}#{line}"
 )
 
-deploydocs(
+deploydocs(;
     repo = "github.com/stepanzh/CubicEoSDatabase.jl.git",
+    devbranch = "main",
 )
