@@ -54,11 +54,13 @@ end
     db = Data.brusilovsky_mix()
     @test getmatrix(db, ("methane", "propane", "ethane")) isa Dict{Symbol,Matrix{Float64}}
     @test_throws CubicEoSDatabase.NotFoundError getmatrix(db, ("methane", "philosophic_stone"))
-    
+
     response = getmatrix(db, ("methane", "propane", "ethane"))
     @test response[:constant] == [0 0.019 -0.015; 0.019 0 -0.015; -0.015 -0.015 0]
     @test response[:linear] == [0 0.000502 0.000123; 0.000502 0 0; 0.000123 0 0]
-    @test response[:quadratic] == [0 0 -0.41; 0 0 0; -0.41 0 0]
+    let q=-0.41e-5
+        @test response[:quadratic] == [0 0 q; 0 0 0; q 0 0]
+    end
 end
 
 end  # @testset
