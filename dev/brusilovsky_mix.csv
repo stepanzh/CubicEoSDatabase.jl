@@ -1,0 +1,6 @@
+comp1,comp2,constant,linear,quadratic
+nitrogen,n-heptane,0.168,0.000558,0
+methane,ethane,-0.015,0.000123,-0.41
+methane,propane,0.019,0.000502,0
+methane,n-butane,0.031,0.000502,0
+propane,n-butane,-0.063,0.000559,0
