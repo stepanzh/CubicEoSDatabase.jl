@@ -1,3 +1,6 @@
 [deps]
 CubicEoSDatabase = "8742253c-1987-415f-b31d-1ec9670d9ed7"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[compat]
+Documenter = "0.27"
