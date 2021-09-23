@@ -48,9 +48,10 @@ I Martinez gas properties.
 martinez() = value(CachedMartinez)
 
 const brusilovsky_book = "A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)"
-const CachedBrusilovskyComp = CachedDatabase(ComponentDatabase,
+const CachedBrusilovskyComp = CachedDatabase(
+    ComponentDatabase,
     (joinpath(root, "eos/comp/brusilovsky.csv"),),
-    (reference=brusilovsky_book, delim=',')
+    (reference="Table 4.14 / "*brusilovsky_book, delim=','),
 )
 
 """
@@ -60,9 +61,13 @@ A I Brusilovsky equation of state. Parameters for pure components.
 """
 brusilovsky_comp() = value(CachedBrusilovskyComp)
 
-const CachedBrusilovskyMixture = CachedDatabase(MixtureDatabase,
+const CachedBrusilovskyMixture = CachedDatabase(
+    MixtureDatabase,
     (joinpath(root, "eos/mix/brusilovsky.csv"),),
-    (reference=brusilovsky_book, delim=',')
+    (
+        reference="Table 4.22 (mistakes: gij->gij⋅10³, hij->hij⋅10⁵) / "*brusilovsky_book,
+        delim=',',
+    ),
 )
 
 """
