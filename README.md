@@ -6,9 +6,12 @@ old gitlab pipeline
 [![documetation here](https://img.shields.io/badge/docs-latest-informational.svg)](https://stepanzh.github.io/CubicEoSDatabase.jl/)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
-Database of parameters for cubic equations of state. Originally, the database is aimed at pure alkanes and its mixtures.
+*Loading parameters of equations of state from plain text.*
 
-Currently, the most described equation of state is **Brusilovsky**'s (general) equation of state [[Brusilovsky SPE Reservoir Engineering 1992](https://doi.org/10.2118/20180-PA)], which is easily transformed into common-known **Peng-Robinson** or **Soave-Redlich-Kwong** equations.
+The package provides interface to separated-values files describing *parameters for cubic equations of state*.
+The package is **free of third-party text parsers** like [CSV.jl](https://github.com/JuliaData/CSV.jl).
+
+Currently, the most described equation of state is **Brusilovsky**'s (general) equation of state [[Brusilovsky SPE Reservoir Engineering 1992](https://doi.org/10.2118/20180-PA)], which is easily transformed into common-known **Peng-Robinson** or **Soave-Redlich-Kwong** equations. Originally, the package is aimed at modelling pure alkanes and its mixtures.
 
 Package's **documentation** is available [here](https://stepanzh.github.io/CubicEoSDatabase.jl/).
 
