@@ -3,7 +3,7 @@
 <!--
 old gitlab pipeline
 [![pipeline status](https://gitlab.com/stepanzh/cubiceosdatabase.jl/badges/master/pipeline.svg)](https://gitlab.com/stepanzh/cubiceosdatabase.jl/-/commits/master) -->
-[![documetation here](https://img.shields.io/badge/docs-here-informational.svg)](https://stepanzh.github.io/CubicEoSDatabase.jl/)
+[![documetation here](https://img.shields.io/badge/docs-latest-informational.svg)](https://stepanzh.github.io/CubicEoSDatabase.jl/)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
 Database of parameters for different cubic equations of state. The database is aimed at pure alkanes and its mixtures.
