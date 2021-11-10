@@ -13,7 +13,7 @@ Currently, the most described equation of state is **Brusilovsky**'s (general) e
 Package's **documentation** is available [here](https://stepanzh.github.io/CubicEoSDatabase.jl/).
 
 The package comes with **Out-of-box database** of gas properties and eos parameters.
-For a quick preview of embeded substances see [this](https://stepanzh.github.io/CubicEoSDatabase.jl/stable/outofboxdb/).
+For a quick preview of embedded substances see [this](https://stepanzh.github.io/CubicEoSDatabase.jl/stable/outofboxdb/).
 The database can be accessed from `CubicEoSDatabase.Data` submodule. See `help?> CubicEoSDatabase.Data`.
 
 For **minimal working examples** see `test/example.jl`.
