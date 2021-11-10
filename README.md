@@ -18,7 +18,7 @@ Documentation is available [here](https://stepanzh.github.io/CubicEoSDatabase.jl
 
 1. Go to Julia REPL.
 2. Activate packager mode (press `]`).
-3. Run `(v1.6) pkg> add https://github.com/stepanzh/CubicEosDatabase.jl`.
+3. Run `(v1.6) pkg> add CubicEosDatabase`.
 
 After installing you can test package by `(v1.6) pkg> test CubicEoSDatabase`.
 
