@@ -1,42 +1,118 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Out-of-box database · CubicEoSDatabase.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">CubicEoSDatabase.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li class="is-active"><a class="tocitem" href>Out-of-box database</a><ul class="internal"><li><a class="tocitem" href="#A-I-Martinez-database-of-gas-properties"><span>A I Martinez database of gas properties</span></a></li><li><a class="tocitem" href="#A-I-Brusilovsky-(general)-equation-of-state"><span>A I Brusilovsky (general) equation of state</span></a></li></ul></li><li><a class="tocitem" href="../apireference/">API Reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Out-of-box database</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Out-of-box database</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/stepanzh/CubicEoSDatabase.jl/blob/master/docs/src/outofboxdb.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Out-of-box-database"><a class="docs-heading-anchor" href="#Out-of-box-database">Out-of-box database</a><a id="Out-of-box-database-1"></a><a class="docs-heading-anchor-permalink" href="#Out-of-box-database" title="Permalink"></a></h1><p>Out-of-box database of physical and equation of state parameters lives in <a href="../apireference/#CubicEoSDatabase.Data"><code>Data</code></a> submodule.</p><h2 id="A-I-Martinez-database-of-gas-properties"><a class="docs-heading-anchor" href="#A-I-Martinez-database-of-gas-properties">A I Martinez database of gas properties</a><a id="A-I-Martinez-database-of-gas-properties-1"></a><a class="docs-heading-anchor-permalink" href="#A-I-Martinez-database-of-gas-properties" title="Permalink"></a></h2><p>This database can be accessed by <a href="../apireference/#CubicEoSDatabase.Data.martinez-Tuple{}"><code>Data.martinez</code></a>.</p><p><strong>Reference</strong></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; reference(Data.martinez()) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">Website (loaded in 2017): http://imartinez.etsiae.upm.es/~isidoro/dat1/eGAS.pdf</code></pre><h3 id="Available-components"><a class="docs-heading-anchor" href="#Available-components">Available components</a><a id="Available-components-1"></a><a class="docs-heading-anchor-permalink" href="#Available-components" title="Permalink"></a></h3><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; join(keys(Data.martinez()), &#39;\n&#39;) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">air
 carbon_dioxide
+hydrogen_sulfide
+nitrogen
 water
+methane
+ethane
+propane
+n-butane
+i-butane
+n-pentane
+i-pentane
+n-hexane
+n-heptane
+n-octane
+n-decane</code></pre><h2 id="A-I-Brusilovsky-(general)-equation-of-state"><a class="docs-heading-anchor" href="#A-I-Brusilovsky-(general)-equation-of-state">A I Brusilovsky (general) equation of state</a><a id="A-I-Brusilovsky-(general)-equation-of-state-1"></a><a class="docs-heading-anchor-permalink" href="#A-I-Brusilovsky-(general)-equation-of-state" title="Permalink"></a></h2><p><a href="https://doi.org/10.2118/20180-PA">Brusilovsky, SPE Reservoir Engineering, February 1992</a></p><p>This is a cubic 4-parameter equation of state. It has the following form for a component</p><p class="math-container">\[P(\upsilon, T) = \frac{RT}{\upsilon - b} - \frac{a(T)}{(\upsilon + c)(\upsilon + d)},\]</p><p>where</p><ul><li><span>$P, \upsilon, T$</span> are pressure, molar volume and temperature of a substance respectively;</li><li><span>$a(T)$</span> is temperature-dependent EoS parameter;</li><li><span>$b, c, d$</span> are constant EoS parameters.</li></ul><p>The reason we call this equation of state &quot;general&quot; is that it can be transformed into common-used Soave-Redlich-Kwong and Peng-Robinson equations of state. This comes from internal relations between <span>$a(T), b, c$</span> and <span>$d$</span>.</p><h3 id="Parameters-for-pure-components"><a class="docs-heading-anchor" href="#Parameters-for-pure-components">Parameters for pure components</a><a id="Parameters-for-pure-components-1"></a><a class="docs-heading-anchor-permalink" href="#Parameters-for-pure-components" title="Permalink"></a></h3><p>This database can be accessed by <a href="../apireference/#CubicEoSDatabase.Data.brusilovsky_comp-Tuple{}"><code>Data.brusilovsky_comp</code></a>.</p><p><strong>Reference</strong></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; reference(Data.brusilovsky_comp()) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">Table 4.14 / A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)</code></pre><h4 id="Available-components-2"><a class="docs-heading-anchor" href="#Available-components-2">Available components</a><a class="docs-heading-anchor-permalink" href="#Available-components-2" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; join(keys(Data.brusilovsky_comp()), &#39;\n&#39;) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">carbon_dioxide
+hydrogen_sulfide
 nitrogen
 methane
 ethane
 propane
 n-butane
+i-butane
 n-pentane
+i-pentane
 n-hexane
 n-heptane
 n-octane
-n-decane</code></pre><h2 id="A-I-Brusilovsky-(general)-equation-of-state"><a class="docs-heading-anchor" href="#A-I-Brusilovsky-(general)-equation-of-state">A I Brusilovsky (general) equation of state</a><a id="A-I-Brusilovsky-(general)-equation-of-state-1"></a><a class="docs-heading-anchor-permalink" href="#A-I-Brusilovsky-(general)-equation-of-state" title="Permalink"></a></h2><p><a href="https://doi.org/10.2118/20180-PA">Brusilovsky, SPE Reservoir Engineering, February 1992</a></p><p>This is a cubic 4-parameter equation of state. It has the following form for a component</p><p class="math-container">\[P(\upsilon, T) = \frac{RT}{\upsilon - b} - \frac{a(T)}{(\upsilon + c)(\upsilon + d)},\]</p><p>where</p><ul><li><span>$P, \upsilon, T$</span> are pressure, molar volume and temperature of a substance respectively;</li><li><span>$a(T)$</span> is temperature-dependent EoS parameter;</li><li><span>$b, c, d$</span> are constant EoS parameters.</li></ul><p>The reason we call this equation of state &quot;general&quot; is that it can be transformed into common-used Soave-Redlich-Kwong and Peng-Robinson equations of state. This comes from internal relations between <span>$a(T), b, c$</span> and <span>$d$</span>.</p><h3 id="Parameters-for-pure-components"><a class="docs-heading-anchor" href="#Parameters-for-pure-components">Parameters for pure components</a><a id="Parameters-for-pure-components-1"></a><a class="docs-heading-anchor-permalink" href="#Parameters-for-pure-components" title="Permalink"></a></h3><p>This database can be accessed by <a href="../apireference/#CubicEoSDatabase.Data.brusilovsky_comp-Tuple{}"><code>Data.brusilovsky_comp</code></a>.</p><p><strong>Reference</strong></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; reference(Data.brusilovsky_comp()) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">Table 4.14 / A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)</code></pre><h4 id="Available-components-2"><a class="docs-heading-anchor" href="#Available-components-2">Available components</a><a class="docs-heading-anchor-permalink" href="#Available-components-2" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; join(keys(Data.brusilovsky_comp()), &#39;\n&#39;) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">methane
-ethane
-propane
-n-butane
-n-pentane
-n-hexane
-n-heptane
-n-octane
-n-decane
-carbon_dioxide
-nitrogen</code></pre><h3 id="Binary-interaction-parameters"><a class="docs-heading-anchor" href="#Binary-interaction-parameters">Binary interaction parameters</a><a id="Binary-interaction-parameters-1"></a><a class="docs-heading-anchor-permalink" href="#Binary-interaction-parameters" title="Permalink"></a></h3><p>This database can be accessed by <a href="../apireference/#CubicEoSDatabase.Data.brusilovsky_mix-Tuple{}"><code>Data.brusilovsky_mix</code></a>.</p><p><strong>Reference</strong></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; reference(Data.brusilovsky_mix()) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">Table 4.22 (mistakes: gij-&gt;gij⋅10³, hij-&gt;hij⋅10⁵) / A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)</code></pre><h4 id="Available-pairs"><a class="docs-heading-anchor" href="#Available-pairs">Available pairs</a><a id="Available-pairs-1"></a><a class="docs-heading-anchor-permalink" href="#Available-pairs" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; join(keys(Data.brusilovsky_mix()), &#39;\n&#39;) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">(&quot;methane&quot;, &quot;ethane&quot;)
-(&quot;methane&quot;, &quot;nitrogen&quot;)
+n-decane</code></pre><h3 id="Binary-interaction-parameters"><a class="docs-heading-anchor" href="#Binary-interaction-parameters">Binary interaction parameters</a><a id="Binary-interaction-parameters-1"></a><a class="docs-heading-anchor-permalink" href="#Binary-interaction-parameters" title="Permalink"></a></h3><p>This database can be accessed by <a href="../apireference/#CubicEoSDatabase.Data.brusilovsky_mix-Tuple{}"><code>Data.brusilovsky_mix</code></a>.</p><p><strong>Reference</strong></p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; reference(Data.brusilovsky_mix()) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">Table 4.22 (mistakes: gij-&gt;gij⋅10³, hij-&gt;hij⋅10⁵) / A I Brusilovskii. Fazovie prevrasheniya pri razrabotke mestorozhdeniy nefti i gaza (Phase transitions during mining of petroleum and gas). 2002. Moscow, Graal’. ISBN: 5-94688-031-4. (in Russian)</code></pre><h4 id="Available-pairs"><a class="docs-heading-anchor" href="#Available-pairs">Available pairs</a><a id="Available-pairs-1"></a><a class="docs-heading-anchor-permalink" href="#Available-pairs" title="Permalink"></a></h4><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using CubicEoSDatabase; join(keys(Data.brusilovsky_mix()), &#39;\n&#39;) |&gt; print</code><code class="nohighlight hljs ansi" style="display:block;">(&quot;nitrogen&quot;, &quot;hydrogen_sulfide&quot;)
+(&quot;nitrogen&quot;, &quot;carbon_dioxide&quot;)
+(&quot;nitrogen&quot;, &quot;methane&quot;)
+(&quot;nitrogen&quot;, &quot;ethane&quot;)
+(&quot;nitrogen&quot;, &quot;propane&quot;)
+(&quot;nitrogen&quot;, &quot;i-butane&quot;)
+(&quot;nitrogen&quot;, &quot;n-butane&quot;)
+(&quot;nitrogen&quot;, &quot;i-pentane&quot;)
+(&quot;nitrogen&quot;, &quot;n-pentane&quot;)
+(&quot;nitrogen&quot;, &quot;n-hexane&quot;)
+(&quot;nitrogen&quot;, &quot;n-heptane&quot;)
+(&quot;nitrogen&quot;, &quot;n-decane&quot;)
+(&quot;nitrogen&quot;, &quot;hexadecane&quot;)
+(&quot;nitrogen&quot;, &quot;benzene&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;carbon_dioxide&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;methane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;ethane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;propane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;i-butane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;n-butane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;n-pentane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;n-heptane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;n-decane&quot;)
+(&quot;hydrogen_sulfide&quot;, &quot;toluene&quot;)
+(&quot;carbon_dioxide&quot;, &quot;methane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;ethane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;propane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;i-butane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;n-butane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;i-pentane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;n-pentane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;n-hexane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;n-heptane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;n-decane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;hexadecane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;nonadecane&quot;)
+(&quot;carbon_dioxide&quot;, &quot;benzene&quot;)
+(&quot;carbon_dioxide&quot;, &quot;toluene&quot;)
+(&quot;carbon_dioxide&quot;, &quot;cyclohexane&quot;)
+(&quot;methane&quot;, &quot;ethane&quot;)
 (&quot;methane&quot;, &quot;propane&quot;)
+(&quot;methane&quot;, &quot;i-butane&quot;)
 (&quot;methane&quot;, &quot;n-butane&quot;)
+(&quot;methane&quot;, &quot;i-pentane&quot;)
 (&quot;methane&quot;, &quot;n-pentane&quot;)
 (&quot;methane&quot;, &quot;n-hexane&quot;)
+(&quot;methane&quot;, &quot;n-heptane&quot;)
+(&quot;methane&quot;, &quot;n-octane&quot;)
+(&quot;methane&quot;, &quot;n-nonane&quot;)
 (&quot;methane&quot;, &quot;n-decane&quot;)
-(&quot;nitrogen&quot;, &quot;n-decane&quot;)
-(&quot;nitrogen&quot;, &quot;n-heptane&quot;)
-(&quot;nitrogen&quot;, &quot;propane&quot;)
+(&quot;methane&quot;, &quot;tridecane&quot;)
+(&quot;methane&quot;, &quot;hexadecane&quot;)
+(&quot;methane&quot;, &quot;icosane&quot;)
+(&quot;methane&quot;, &quot;cyclohexane&quot;)
+(&quot;methane&quot;, &quot;methylcyclohexane&quot;)
+(&quot;methane&quot;, &quot;decalin&quot;)
+(&quot;methane&quot;, &quot;benzene&quot;)
+(&quot;methane&quot;, &quot;toluene&quot;)
+(&quot;methane&quot;, &quot;xylene&quot;)
+(&quot;methane&quot;, &quot;p-cymene&quot;)
+(&quot;methane&quot;, &quot;1-methylnaphthalene&quot;)
 (&quot;ethane&quot;, &quot;propane&quot;)
+(&quot;ethane&quot;, &quot;i-butane&quot;)
 (&quot;ethane&quot;, &quot;n-butane&quot;)
 (&quot;ethane&quot;, &quot;n-pentane&quot;)
 (&quot;ethane&quot;, &quot;n-hexane&quot;)
+(&quot;ethane&quot;, &quot;n-heptane&quot;)
+(&quot;ethane&quot;, &quot;n-octane&quot;)
+(&quot;ethane&quot;, &quot;n-decane&quot;)
+(&quot;ethane&quot;, &quot;icosane&quot;)
+(&quot;ethane&quot;, &quot;cyclohexane&quot;)
+(&quot;ethane&quot;, &quot;benzene&quot;)
 (&quot;propane&quot;, &quot;n-butane&quot;)
-(&quot;propane&quot;, &quot;n-decane&quot;)
+(&quot;propane&quot;, &quot;i-pentane&quot;)
 (&quot;propane&quot;, &quot;n-pentane&quot;)
+(&quot;propane&quot;, &quot;n-hexane&quot;)
+(&quot;propane&quot;, &quot;n-heptane&quot;)
+(&quot;propane&quot;, &quot;n-octane&quot;)
+(&quot;propane&quot;, &quot;n-decane&quot;)
+(&quot;propane&quot;, &quot;hexadecane&quot;)
+(&quot;propane&quot;, &quot;cyclohexane&quot;)
+(&quot;propane&quot;, &quot;benzene&quot;)
+(&quot;propane&quot;, &quot;toluene&quot;)
+(&quot;propane&quot;, &quot;m-xylene&quot;)
 (&quot;n-butane&quot;, &quot;n-pentane&quot;)
-(&quot;n-hexane&quot;, &quot;n-decane&quot;)</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../apireference/">API Reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.10 on <span class="colophon-date" title="Monday 22 November 2021 13:18">Monday 22 November 2021</span>. Using Julia version 1.6.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+(&quot;n-butane&quot;, &quot;n-hexane&quot;)
+(&quot;n-butane&quot;, &quot;n-heptane&quot;)
+(&quot;n-butane&quot;, &quot;n-octane&quot;)
+(&quot;n-butane&quot;, &quot;n-decane&quot;)</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../apireference/">API Reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.10 on <span class="colophon-date" title="Tuesday 23 November 2021 09:44">Tuesday 23 November 2021</span>. Using Julia version 1.6.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
