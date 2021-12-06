@@ -77,4 +77,15 @@ A I Brusilovsky equation of state. Binary parameters for mixtures.
 """
 brusilovsky_mix() = value(CachedBrusilovskyMixture)
 
+const CachedBrusilovskyMixtureAdjusted = CachedDatabase(
+    MixtureDatabase,
+    (joinpath(root, "eos/mix/brusilovsky_adjusted.csv"),),
+    (
+        reference="See `Data.brusilovsky_mix()`, but missed values for up to C7+ are adjusted.",
+        delim=',',
+    ),
+)
+
+brusilovsky_mix_adjusted() = value(CachedBrusilovskyMixtureAdjusted)
+
 end # module
